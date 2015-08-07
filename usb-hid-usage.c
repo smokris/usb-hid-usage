@@ -574,6 +574,9 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 	}
 
+	else if (usagePage >= 0xff00 && usagePage <= 0xffff)
+		asprintf(&text, "Vendor-defined (%04x:%04x)", usagePage, usage);
+
 	if (!text)
 		asprintf(&text, "unknown (%04x:%04x)", usagePage, usage);
 	
