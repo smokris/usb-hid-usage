@@ -12,6 +12,7 @@
  *
  *    - Implementation of RR39 is incomplete.
  *    - The conflicting assignments between RR33 (status "Review") and RR47 (status "Approved") are noted below; I went with the latter.
+ *    - Includes usage pages 0x84 and 0x85 from "Universal Serial Bus Usage Tables for HID Power Devices Release 1.0 November 1, 1997".
  *
  * Copyright (C) 2015 Steve Mokris.  Use and distribution permitted under the terms of the Apache License Version 2.0.
  */
@@ -546,6 +547,83 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0,
 			"Soft Control Select", "Soft Control Adjust", 0, 0, 0, 0, 0, 0,
+		};
+		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
+	}
+
+	else if (usagePage == 0x84)	// Power Device
+	{
+		char *lookup[] = {
+			0, "iName", "PresentStatus", "ChangedStatus", "UPS", "PowerSupply", 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"BatterySystem", "BatterySystemID", "Battery", "BatteryID", "Charger", "ChargerID", "PowerConverter", "PowerConverterID",
+			"OutletSystem", "OutletSystemID", "Input", "InputID", "Output", "OutputID", "Flow", "FlowID",
+			"Outlet", "OutletID", "Gang", "GangID", "Sink", "SinkID", 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"Voltage", "Current", "Frequency", "ApparentPower", "ActivePower", "PercentLoad", "Temperature", "Humidity",
+			"BadCount", 0, 0, 0, 0, 0, 0, 0,
+			"ConfigVoltage", "ConfigCurrent", "ConfigFrequency", "ConfigApparentPower", "ConfigActivePower", "ConfigPercentLoad", "ConfigTemperature", "ConfigHumidity",
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"SwitchOnControl", "SwitchOffControl", "ToggleControl", "LowVoltageTransfer", "HighVoltageTransfer", "DelayBeforeReboot", "DelayBeforeStartup", "DelayBeforeShutdown",
+			"Test", "ModuleReset", "AudibleAlarmControl", 0, 0, 0, 0, 0,
+			"Present", "Good", "InternalFailure", "VoltageOutOfRange", "FrequencyOutOfRange", "Overload", "OverCharged", "OverTemperature",
+			"ShutdownRequested", "ShutdownImminent", 0, "SwitchOn/Off", "Switchable", "Used", "Boost", "Buck",
+			"Initialized", "Tested", "AwaitingPower", "CommunicationLost", 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, "iManufacturer", "iProduct", "iSerialNumber",
+		};
+		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
+	}
+
+	else if (usagePage == 0x85)	// Battery System
+	{
+		char *lookup[] = {
+			0, "SMBBatteryMode", "SMBBatteryStatus", "SMBAlarmWarning", "SMBChargerMode", "SMBChargerStatus", "SMBChargerSpecInfo", "SMBSelectorState",
+			"SMBSelectorPresets", "SMBSelectorInfo", 0, 0, 0, 0, 0, 0,
+			"OptionalMfgFunction1", "OptionalMfgFunction2", "OptionalMfgFunction3", "OptionalMfgFunction4", "OptionalMfgFunction5", "ConnectionToSMBus", "OutputConnection", "ChargerConnection",
+			"BatteryInsertion", "Usenext", "OKToUse", "BatterySupported", "SelectorRevision", "ChargingIndicator", 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"ManufacturerAccess", "RemainingCapacityLimit", "RemainingTimeLimit", "AtRate", "CapacityMode", "BroadcastToCharger", "PrimaryBattery", "ChargeController",
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"TerminateCharge", "TerminateDischarge", "BelowRemainingCapacityLimit", "RemainingTimeLimitExpired", "Charging", "Discharging", "FullyCharged", "FullyDischarged",
+			"ConditioningFlag", "AtRateOK", "SMBErrorCode", "NeedReplacement", 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"AtRateTimeToFull", "AtRateTimeToEmpty", "AverageCurrent", "Maxerror", "RelativeStateOfCharge", "AbsoluteStateOfCharge", "RemainingCapacity", "FullChargeCapacity",
+			"RunTimeToEmpty", "AverageTimeToEmpty", "AverageTimeToFull", "CycleCount", 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"BattPackModelLevel", "InternalChargeController", "PrimaryBatterySupport", "DesignCapacity", "SpecificationInfo", "ManufacturerDate", "SerialNumber", "iManufacturerName",
+			"iDevicename", "iDeviceChemistry", "ManufacturerData", "Rechargeable", "WarningCapacityLimit", "CapacityGranularity1", "CapacityGranularity2", "iOEMInformation",
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"InhibitCharge", "EnablePolling", "ResetToZero", 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"ACPresent", "BatteryPresent", "PowerFail", "AlarmInhibited", "ThermistorUnderRange", "ThermistorHot", "ThermistorCold", "ThermistorOverRange",
+			"VoltageOutOfRange", "CurrentOutOfRange", "CurrentNotRegulated", "VoltageNotRegulated", "MasterMode", 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"ChargerSelectorSupport", "ChargerSpec", "Level2", "Level3", 0, 0, 0, 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 	}
