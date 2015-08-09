@@ -184,7 +184,7 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 
 		if (usage == 0xffffffff)
-			asprintf(&text, "Keycodes");
+			text = strdup("Keycodes");
 	}
 
 	else if (usagePage == 0x08)	// LED
