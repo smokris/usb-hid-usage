@@ -12,7 +12,9 @@
  *
  *    - Implementation of RR39 is incomplete.
  *    - The conflicting assignments between RR33 (status "Review") and RR47 (status "Approved") are noted below; I went with the latter.
+ *    - Includes usage 0x07:0xffffffff (the 8-bit USB HID keycodes of up to 8 simultanouely-pressed keys).
  *    - Includes usage pages 0x84 and 0x85 from "Universal Serial Bus Usage Tables for HID Power Devices Release 1.0 November 1, 1997".
+ *    - Includes usage page 0xff (Fn key on Apple Keyboards).
  *
  * Copyright (C) 2015 Steve Mokris.  Use and distribution permitted under the terms of the Apache License Version 2.0.
  */
@@ -180,6 +182,9 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			"Keyboard LeftControl", "Keyboard LeftShift", "Keyboard LeftAlt", "Keyboard Left GUI", "Keyboard RightControl", "Keyboard RightShift", "Keyboard RightAlt", "Keyboard Right GUI",
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
+
+		if (usage == 0xffffffff)
+			asprintf(&text, "Keycodes");
 	}
 
 	else if (usagePage == 0x08)	// LED
@@ -636,6 +641,14 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0,
 			"Camera Auto-focus", "Camera Shutter", 0, 0, 0, 0, 0, 0,
+		};
+		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
+	}
+
+	else if (usagePage == 0xff)	// Fn key on Apple Keyboards
+	{
+		char *lookup[] = {
+			0, 0, 0, "Fn key", 0, 0, 0, 0,
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 	}
