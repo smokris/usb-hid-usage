@@ -9,7 +9,7 @@
  * The caller is responsible for freeing the returned string.
  *
  * Based on "HID Usage Tables 10/28/2004 Version 1.12" (with a few spelling errors corrected),
- * plus changes from Review Requests 28 through 54.  Exceptions:
+ * plus changes from Review Requests 28 through 55.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
  *    - RR43 is not published and is thus not implemented.
@@ -502,7 +502,7 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			0, "Sensor", 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0,
 			"Biometric", "Biometric: Human Presence", "Biometric: Human Proximity", "Biometric: Human Touch", 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, "Property: Maximum FIFO Events", "Property: Report Latency", 0, 0, 0, 0,
 			"Electrical", "Electrical: Capacitance", "Electrical: Current", "Electrical: Power", "Electrical: Inductance", "Electrical: Resistance", "Electrical: Voltage", "Electrical: Potentiometer",
 			"Electrical: Frequency", "Electrical: Period", 0, 0, 0, 0, 0, 0,
 			"Environmental", "Environmental: Atmospheric Pressure", "Environmental: Humidity", "Environmental: Temperature", "Environmental: Wind Direction", "Environmental: Wind Speed", 0, 0,
