@@ -12,6 +12,7 @@
  *
  *    - Implementation of RR39 is incomplete.
  *    - The conflicting assignments between RR33 (status "Review") and RR47 (status "Approved") are noted below; I went with the latter.
+ *    - Includes usage 0x01:0xffffffff (Apple Mikey keycode).
  *    - Includes usage 0x07:0xffffffff (the 8-bit USB HID keycodes of up to 8 simultanouely-pressed keys).
  *    - Includes usage pages 0x84 and 0x85 from "Universal Serial Bus Usage Tables for HID Power Devices Release 1.0 November 1, 1997".
  *    - Includes usage page 0xff (Fn key on Apple Keyboards).
@@ -53,6 +54,9 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			"Wireless Radio Slider Switch", "System Display Rotation Lock Button", "System Display Rotation Lock Slider Switch", "Control Enable", 0, 0, 0, 0,
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
+
+		if (usage == 0xffffffff)
+			text = strdup("Keycodes");
 	}
 
 	else if (usagePage == 0x02)	// Simulation Controls
