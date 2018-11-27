@@ -17,7 +17,7 @@
  *    - Includes usage pages 0x84 and 0x85 from "Universal Serial Bus Usage Tables for HID Power Devices Release 1.0 November 1, 1997".
  *    - Includes usage page 0xff (Fn key on Apple Keyboards).
  *
- * Copyright (C) 2015 Steve Mokris.  Use and distribution permitted under the terms of the Apache License Version 2.0.
+ * Copyright (C) 2015–2018 Steve Mokris.  Use and distribution permitted under the terms of the Apache License Version 2.0.
  */
 char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 {
