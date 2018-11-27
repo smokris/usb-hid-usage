@@ -9,7 +9,7 @@
  * The caller is responsible for freeing the returned string.
  *
  * Based on "HID Usage Tables 10/28/2004 Version 1.12" (with a few spelling errors corrected),
- * plus changes from Review Requests 28 through 52.  Exceptions:
+ * plus changes from Review Requests 28 through 53.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
  *    - RR43 is not published and is thus not implemented.
@@ -454,7 +454,7 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			"Altitude", "Twist", "Tip Switch", "Secondary Tip Switch", "Barrel Switch", "Eraser", "Tablet Pick", "Touch Valid",
 			"Width", "Height", 0, 0, 0, 0, 0, 0,
 			0, "Contact identifier", "Device mode", "Device identifier", "Contact count", "Contact count maximum", 0, 0,
-			0, 0, "Secondary Barrel Switch", "Transducer Serial Number", 0, 0, 0, 0,
+			0, 0, "Secondary Barrel Switch", "Transducer Serial Number", "Preferred Color", 0, 0, 0,
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 	}
