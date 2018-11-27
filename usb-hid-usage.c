@@ -9,11 +9,11 @@
  * The caller is responsible for freeing the returned string.
  *
  * Based on "HID Usage Tables 10/28/2004 Version 1.12" (with a few spelling errors corrected),
- * plus changes from Review Requests 28 through 56.  Exceptions:
+ * plus changes from Review Requests 28 through 57.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
  *    - RR43 is not published and is thus not implemented.
- *    - The conflicting assignments between RR33 (status "Review") and RR47 (status "Approved") are noted below; I went with the latter.
+ *    - The conflicting assignments between RR33 and RR47 are resolved by RR57.
  *    - Includes usage 0x01:0xffffffff (Apple Mikey keycode).
  *    - Includes usage 0x07:0xffffffff (the 8-bit USB HID keycodes of up to 8 simultanouely-pressed keys).
  *    - Includes usage pages 0x84 and 0x85 from "Universal Serial Bus Usage Tables for HID Power Devices Release 1.0 November 1, 1997".
@@ -205,8 +205,11 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			"Remote", "Forward", "Reverse", "Stop", "Rewind", "Fast Forward", "Play", "Pause",
 			"Record", "Error", "Usage Selected Indicator", "Usage In Use Indicator", "Usage Multi Mode Indicator", "Indicator On", "Indicator Flash", "Indicator Slow Blink",
 			"Indicator Fast Blink", "Indicator Off", "Flash On Time", "Slow Blink On Time", "Slow Blink Off Time", "Fast Blink On Time", "Fast Blink Off Time", "￼Usage Indicator Color",
-			"Indicator Red", "Indicator Green", "Indicator Amber", "Generic Indicator", "System Suspend", "External Power Connected", /* "Indicator Blue", "Indicator Orange", */ "Player Indicator", "Player 1",	// Conflict between RR33 and RR47
-			/* "Good Status", "Warning Status", "RGB LED", "Red LED Channel", "Greed LED Channel", "Blue LED Channel", "LED Intensity", 0, */ "Player 2", "Player 3", "Player 4",  "Player 5",  "Player 6",  "Player 7",  "Player 8", 0,	// Conflict between RR33 and RR47
+			"Indicator Red", "Indicator Green", "Indicator Amber", "Generic Indicator", "System Suspend", "External Power Connected", "Indicator Blue", "Indicator Orange",
+			"Good Status", "Warning Status", "RGB LED", "Red LED Channel", "Greed LED Channel", "Blue LED Channel", "LED Intensity", 0,
+			0, 0, 0, 0, 0, 0, 0, 0,
+			"Player Indicator", "Player 1", "Player 2", "Player 3", "Player 4",  "Player 5",  "Player 6",  "Player 7",
+			"Player 8", 0, 0, 0, 0, 0, 0, 0,
 		};
 		text = usage < sizeof(lookup)/sizeof(char *) ? (lookup[usage] ? strdup(lookup[usage]) : 0) : 0;
 	}
