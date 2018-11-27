@@ -12,6 +12,7 @@
  * plus changes from Review Requests 28 through 52.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
+ *    - RR43 is not published and is thus not implemented.
  *    - The conflicting assignments between RR33 (status "Review") and RR47 (status "Approved") are noted below; I went with the latter.
  *    - Includes usage 0x01:0xffffffff (Apple Mikey keycode).
  *    - Includes usage 0x07:0xffffffff (the 8-bit USB HID keycodes of up to 8 simultanouely-pressed keys).
