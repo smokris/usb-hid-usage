@@ -9,7 +9,7 @@
  * The caller is responsible for freeing the returned string.
  *
  * Based on "HID Usage Tables 10/28/2004 Version 1.12" (with a few spelling errors corrected),
- * plus changes from Review Requests 28 through 55.  Exceptions:
+ * plus changes from Review Requests 28 through 56.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
  *    - RR43 is not published and is thus not implemented.
@@ -358,7 +358,7 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 			"AC Set Borders", "AC Insert Row", "AC Insert Column", "AC Insert File", "AC Insert Picture", "AC Insert Object", "AC Insert Symbol", "AC Save and Close",
 			"AC Rename", "AC Merge", "AC Split", "AC Distribute Horizontally", "AC Distribute Vertically", 0, 0, 0,
 			"AC Soft Key Left", "AC Soft Key Right", 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, "AC Next Keyboard Layout Select", 0, 0,
 			"AC Idle Keep Alive", 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0,
 			"Extended Keyboard Attributes Collection", "Keyboard Form Factor", "Keyboard Key Type", "Keyboard Physical Layout", "Vendor-Specific Keyboard Physical Layout", "Keyboard IETF Language Tag Index", "Implemented Keyboard Input Assist Controls", "Keyboard Input Assist Previous",
