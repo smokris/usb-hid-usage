@@ -1,6 +1,7 @@
+#include "usb-hid-usage.h"
+
 #include <stdio.h>
 #include <string.h>
-#include <stdint.h>
 
 /**
  * Returns a string containing a verbal description of the specified USB HID usage.
@@ -676,11 +677,4 @@ char *getHidUsageText(uint32_t usagePage, uint32_t usage)
 		asprintf(&text, "unknown (%04x:%04x)", usagePage, usage);
 	
 	return text;
-}
-
-int main(void)
-{
-	uint32_t usagePage = 0x02;
-	uint32_t usage     = 0x04;
-	printf("%04x:%04x  %s\n", usagePage, usage, getHidUsageText(usagePage, usage));
 }
