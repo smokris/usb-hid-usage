@@ -9,7 +9,7 @@
  * The caller is responsible for freeing the returned string.
  *
  * Based on "HID Usage Tables 10/28/2004 Version 1.12" (with a few spelling errors corrected),
- * plus changes from Review Requests 28 through 53.  Exceptions:
+ * plus changes from Review Requests 28 through 54.  Exceptions:
  *
  *    - Implementation of RR39 is incomplete.
  *    - RR43 is not published and is thus not implemented.
